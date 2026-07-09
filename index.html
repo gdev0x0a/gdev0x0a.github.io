@@ -2,14 +2,118 @@
   <html>
     <head>
       <title>gdev0x0a</title>
-            <style>
-              body {color: #ffffff; background-color: #000000;}
-              </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Riddim4rebel</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap" rel="stylesheet">
+
+        <script type="importmap">
+          {
+            "imports": {
+                  "three": "https://unpkg.com/three@0.154.0/build/three.module.js",
+                  "three/addons/": "https://unpkg.com/three@0.154.0/examples/jsm/"
+            }
+          }
+        </script>
     </head>
     <body>
 
-      <h1>Testing, Testing, Testing tha mic....</h1>
-      <p>lorem ipsum n shit....brah</p>
-      <img src="/Oscilli_AC_hum_on_sound_leak.jpg" width="1080">
+      <header>
+        <h1>Riddim4Rebel</h1>
+      </header>
+
+      <!-- ⚡【追加】3D操作だけを受け付けるための透明なエリアを1行追加 -->
+      <div id="orbit-target"></div>
+
+      <div class="content-overlay">
+        <h2>Testing, Testing, Testing tha mic....</h2>
+        
+        <!-- <img src="/Oscilli_AC_hum_on_sound_leak.jpg" width="1080"> <!-- just taking it out--> 
+      </div>
+      <div class="images">
+        <img src="/Oscilli_AC_hum_on_sound_leak.jpg" width="1080">
+      </div>
+          <script type="module">
+            import * as THREE from "three";
+            // カメラ操作など拡張機能を使いたい場合は以下のようにインポート可能
+            import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+            
+            // シーン、カメラ、レンダラーのセットアップ
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true});
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            // ⚡【修正】document.body ではなく、新しく作った透明な箱をターゲットにする
+            const controls = new OrbitControls(camera, document.getElementById('orbit-target'));
+            
+             // マウス操作の動きを滑らかにする設定（オプション：お好みで）
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.enableZoom = true;
+
+
+            // add an Icosahedron
+            const geometry = new THREE.IcosahedronGeometry();
+            //empty array
+            const icosahedrons = [];
+            const COUNT = 30;
+
+            for (let i = 0; i < COUNT; i++ ){
+              const color = new THREE.Color();
+              color.setHSL(((COUNT - i * 0.25) / COUNT + 0.65), 1, 0.5)
+              const material = new THREE.MeshBasicMaterial({ color: color, wireframe: true})
+              const mesh = new THREE.Mesh(geometry, material)
+              scene.add(mesh)
+              icosahedrons.push({
+                mesh: mesh,
+                speedX: 0.01 - (i * 0.0001),
+                speedY: 0.01 - (i * 0.0001)
+              });
+            }
+
+            camera.position.z = 1.5;
+             
+            // アニメーションループ
+            function animate() {
+              requestAnimationFrame(animate);
+              
+              icosahedrons.forEach( item => {
+                item.mesh.rotation.x += item.speedX;
+                item.mesh.rotation.y += item.speedY;
+              })
+
+              controls.update();
+              renderer.render(scene, camera);
+            }
+            animate();
+    </script>
+
+        <div class="video-grid">
+            <video controls autoplay muted loop>
+            <source src="assets/optimized_0001-0250_appflag_half.mp4" type="video/mp4">
+            </video>
+
+            <video controls autoplay muted loop>        
+            <source src="assets/optimized_0001-0250_half.mp4" type="video/mp4">
+            </video>
+
+            <video controls autoplay muted loop>
+            <source src="assets/optimized_dot_deform_half.mp4" type="video/mp4">
+            </video>
+
+            <video controls autoplay muted loop>
+            <source src="assets/optimized_0001-0250_2_half.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <p class="centered-text">Sincerely Acknowledged Reality</p>
     </body>
+    <footer>
+      <p>&copy; 2026 Riddim4Rebel</p>
+    </footer>
   </html>

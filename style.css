@@ -1,0 +1,83 @@
+  
+html, body {
+            color: #ffffff;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: auto;
+            overflow-y: auto; /*approve vertical scroll*/
+        }
+
+/* ⚡【追加】3D操作用の透明な箱のスタイル */
+#orbit-target {
+    position: absolute;
+    top: 50% ;
+    left: 50%;
+    transform: translate(-50%, -50% );
+    width: 50vw;
+    height: 50vw; /* canvasと完全に一致させる */
+    z-index: 1;    /* 文字(2)やcanvas(1)よりも手前に置いて、最前面でマウスを掴む */
+    background: transparent; /* 完全透明 */
+    
+} 
+canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vw;
+    z-index: 1; /* set to behind */
+
+    /* ⚡【ここを追加】マウスイベントのバッティング（横取り）をCSSで完全に解除します */
+    pointer-events: none; 
+}
+
+.images {
+    display: flex;
+    justify-content: center;
+}
+img {
+    width: 100vw;
+    height: auto;
+}
+.content-overlay {
+
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    /* ** to center everything -- disabled **
+    justify-content: center;
+    align-items:center;
+    text-align: center; */
+    display: block;
+    margin-top: 0px; /* ⚡【最重要】canvasの高さ（100vw）と全く同じ分だけ、上に巨大な余白を作る */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+  font-family: "BBH Bartle", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  text-align: center;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0px;
+    margin-bottom: 0px;
+}
+
+.video-grid video{
+    width: 100%;       /* Forces video to match the shrinking width of the grid cell */
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.centered-text {
+    text-align: center;
+}
