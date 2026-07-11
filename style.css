@@ -9,6 +9,29 @@ html, body {
             overflow-y: auto; /*approve vertical scroll*/
         }
 
+.content-overlay {
+
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    /* ** to center everything -- disabled **
+    justify-content: center;
+    align-items:center;
+    text-align: center; */
+    display: block;
+    margin-top: 0px; /* ⚡【最重要】canvasの高さ（100vw）と全く同じ分だけ、上に巨大な余白を作る */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.future {
+  font-family: "BBH Bartle", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  text-align: center;
+  max-width: 100vw;
+}
+
 /* ⚡【追加】3D操作用の透明な箱のスタイル */
 #orbit-target {
     position: absolute;
@@ -31,7 +54,7 @@ canvas {
     z-index: 1; /* set to behind */
 
     /* ⚡【ここを追加】マウスイベントのバッティング（横取り）をCSSで完全に解除します */
-    pointer-events: none; 
+    pointer-events: none;
 }
 
 .images {
@@ -40,29 +63,9 @@ canvas {
 }
 img {
     width: 100vw;
-    height: auto;
 }
-.content-overlay {
-
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    /* ** to center everything -- disabled **
-    justify-content: center;
-    align-items:center;
-    text-align: center; */
-    display: block;
-    margin-top: 0px; /* ⚡【最重要】canvasの高さ（100vw）と全く同じ分だけ、上に巨大な余白を作る */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-h1 {
-  font-family: "BBH Bartle", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-  text-align: center;
-  max-width: 100vw;
+.video-cover {
+    width: 100vw;
 }
 
 .video-grid {
@@ -81,4 +84,21 @@ h1 {
 
 .centered-text {
     text-align: center;
+}
+#canvas-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+#myCanvas {
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+
+.BAD {
+    color: #FFF;
+    font-family: monospace;
+    font-size: 150px;
+    margin-top: 100px;
 }
