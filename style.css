@@ -9,6 +9,11 @@ html, body {
             overflow-y: auto; /*approve vertical scroll*/
         }
 
+
+p {
+    text-align: center;
+}
+
 .content-overlay {
 
     z-index: 2;
