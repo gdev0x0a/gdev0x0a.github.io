@@ -30,11 +30,11 @@ p {
 }
 
 .future {
-  font-family: "BBH Bartle", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-  text-align: center;
-  max-width: 100vw;
+    font-family: "BBH Bartle", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    text-align: center;
+    max-width: 100%;
 }
 
 /* ⚡【追加】3D操作用の透明な箱のスタイル */
